@@ -15,3 +15,5 @@ print()
 
 for i in lista:
     print(i)
+    
+# CLASE del 24/05/2023 #
