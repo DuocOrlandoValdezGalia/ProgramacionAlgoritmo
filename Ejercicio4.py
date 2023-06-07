@@ -11,6 +11,9 @@ sbCapuchino = 0
 sbLatte = 0
 sbMoca = 0
 
+descuento = 0
+total = 0
+
 i = True
 
 def MenuCafes():
@@ -22,8 +25,21 @@ def MenuCafes():
         print("Ha ocurrido un error en su elección")
 
 def factura( subtotalExpreso, subtotalCapuchino, subtotalLatte, subtotalMoca ):
-    print("==================== Boleta ====================")
-    print(f"{acExpreso} Expreso - ${subtotalExpreso}", f"{acCapuchino} Capuchino - ${subtotalCapuchino}", f"", f"",)
+    subtotalFinal = subtotalExpreso + subtotalCapuchino + subtotalLatte + subtotalMoca
+    total = subtotalFinal
+    print("============ Boleta ============")
+    print(f"{acExpreso} Expreso \t\t ${subtotalExpreso}", f"{acCapuchino} Capuchino \t\t ${subtotalCapuchino}", f"{acLatte} Latte \t\t ${subtotalLatte}", f"{acMoca} Moca \t\t\t ${subtotalMoca}\n", sep="\n")
+    print("================================")
+    print(f"Subtotal \t\t ${subtotalFinal}")
+    if subtotalFinal > 3000:
+        descuento = subtotalFinal * 10 / 100
+        total = subtotalFinal - descuento
+        print(f"Descuento \t\t ${descuento}")
+    print("================================")
+    print(f"Total \t\t\t ${total}\n")
+    print("Gracias por su compra! Vuelva pronto! :)\n")
+    
+    
 
 while i:
     opcionElegida = MenuCafes()
@@ -56,3 +72,12 @@ while i:
 
         case _:
             print("\n6Opcion elegida no valida!\n")
+    
+    
+    print("Desea imprimir boleta?: ", "1) Si", "2) No", sep="\n")
+    imprimirBoleta = int(input("> "))
+    
+    
+    if imprimirBoleta == 1:
+        factura(sbExpreso, sbCapuchino, sbLatte, sbMoca)
+        i = False
